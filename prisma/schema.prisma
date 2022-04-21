@@ -12,13 +12,13 @@ datasource db {
 
 model users {
   id       Int    @id @default(autoincrement())
-  email    String
+  email    String @unique
   password String
 }
 
 model disciplines {
   id     Int    @id @default(autoincrement())
-  name   String
+  name   String @unique
   term   terms  @relation(fields: [termId], references: [id])
   termId Int
 }
@@ -54,6 +54,6 @@ model tests {
 
 model categories {
   id    Int     @id @default(autoincrement())
-  name  String
+  name  String  @unique
   tests tests[]
 }
