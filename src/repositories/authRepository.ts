@@ -7,7 +7,6 @@ import bcrypt from "bcrypt";
 export async function signUp(user: userData) {
   const secretKey = process.env.JWT_SECRET;
 	const hashPassword: string = bcrypt.hashSync(user.password, 8);
-	console.log(hashPassword)
 	
 	const userData = {
 		email: user.email,
@@ -30,7 +29,15 @@ export async function login(userData: userData) {
 	if(!validatePassword) errorUtils.unauthorized()
 
 	const secretKey = process.env.JWT_SECRET;
-  const token = jwt.sign(userData, secretKey);
+  const token = jwt.sign({userId: user.id}, secretKey);
+
+ const coisa = await authService.createSession(user.id, token)
+ console.log(coisa)
 
 	return token;
+}
+
+export async function logout(token:string) {
+  await authService.logout(token)
+	return
 }

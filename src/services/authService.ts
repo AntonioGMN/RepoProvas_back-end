@@ -17,7 +17,38 @@ function findUserByEmail(email: string){
 	})
 }
 
+function createSession(id: number, token: string){
+	const session = {
+		userId: id,
+		token
+	}
+
+	return prisma.sessions.create({
+		data: session,
+	})
+}	
+
+function findSession(id: number, token: string){
+	return prisma.sessions.findFirst({
+		where: {
+			userId: id,
+			token: token
+		}
+	})
+}	
+
+function logout(token: string){
+	return prisma.sessions.delete({
+		where: {
+			token: token
+		}
+	})
+}	
+
 export default {
 	createUser,
-	findUserByEmail
+	findUserByEmail,
+	createSession,
+	findSession,
+	logout
 }

@@ -16,5 +16,13 @@ export  async function login(req: Request, res: Response) {
 
 	const token = await authRepository.login(user);
 
-	res.send(token)
+	res.send({token})
+}
+
+export async function logout(req: Request, res: Response) {
+	const token = res.locals.token
+
+	await authRepository.logout(token)
+	
+	res.sendStatus(200)
 }

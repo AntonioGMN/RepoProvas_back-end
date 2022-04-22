@@ -11,9 +11,10 @@ datasource db {
 }
 
 model users {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int        @id @default(autoincrement())
+  email    String     @unique
   password String
+  sessions sessions[]
 }
 
 model disciplines {
@@ -56,4 +57,11 @@ model categories {
   id    Int     @id @default(autoincrement())
   name  String  @unique
   tests tests[]
+}
+
+model sessions {
+  id     Int    @id @default(autoincrement())
+  user   users  @relation(fields: [userId], references: [id])
+  userId Int
+  token  String @unique
 }
