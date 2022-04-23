@@ -11,10 +11,9 @@ export default async function validateToken(req: Request, res: Response, nest: N
   try {
 	  const {userId} = jwt.verify(token, chaveSecreta);
     const session = await authService.findSession(userId, token)
-    if(!session) res.status(401).send("session not found")
-
+    if(!session) return res.status(401).send("session not found")
   } catch {
-	  res.status(401).send("invalide token")
+    return res.status(401).send("invalide token")
   }
   
   res.locals.token = token;
