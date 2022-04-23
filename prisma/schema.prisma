@@ -18,10 +18,11 @@ model users {
 }
 
 model disciplines {
-  id     Int    @id @default(autoincrement())
-  name   String @unique
-  term   terms  @relation(fields: [termId], references: [id])
-  termId Int
+  id                  Int                   @id @default(autoincrement())
+  name                String                @unique
+  term                terms                 @relation(fields: [termId], references: [id])
+  termId              Int
+  teachersDisciplines teachersDisciplines[]
 }
 
 model terms {
@@ -31,10 +32,12 @@ model terms {
 }
 
 model teachersDisciplines {
-  id        Int      @id @default(autoincrement())
-  teacher   teachers @relation(fields: [teacherId], references: [id])
-  teacherId Int
-  tests     tests[]
+  id           Int         @id @default(autoincrement())
+  teacher      teachers    @relation(fields: [teacherId], references: [id])
+  tests        tests[]
+  teacherId    Int
+  discipline   disciplines @relation(fields: [disciplineId], references: [id])
+  disciplineId Int
 }
 
 model teachers {
