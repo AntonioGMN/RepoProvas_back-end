@@ -12,6 +12,7 @@ export function getTests(){
          },
          discipline: {
            select: {
+             id: true,
              name: true
            }
          }

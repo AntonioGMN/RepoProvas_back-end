@@ -1,28 +1,27 @@
 import { prisma } from "../database.js";
 
-export function getCategories(){
- return prisma.categories.findMany({
-   include:{
-     tests: {
-       select: {
-        name: true,
-        pdfUrl: true,
-        teachersDiscipline:{
-          select:{
-            teacher:{
-              select: {
-                name: true
-              }
-            },
-            discipline: {
-              select: {
-                name: true
-              }
-            }
-          }
-        }
-       }
-     }
-   }
- })
+export function getCategories() {
+	return prisma.categories.findMany({
+		include: {
+			tests: {
+				include: {
+					teachersDiscipline: {
+						select: {
+							teacher: {
+								select: {
+									name: true,
+								},
+							},
+							discipline: {
+								select: {
+									id: true,
+									name: true,
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	});
 }
