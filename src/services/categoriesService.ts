@@ -9,6 +9,7 @@ export function getCategories() {
 						select: {
 							teacher: {
 								select: {
+									id: true,
 									name: true,
 								},
 							},
