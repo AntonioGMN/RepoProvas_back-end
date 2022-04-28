@@ -4,6 +4,6 @@ import validateToken from "../Middlerware/validateToken.js";
 
 const testsRouter = Router();
 testsRouter.get("/tests", validateToken, testsController.getTests);
-testsRouter.post("/tests/update", validateToken, testsController.updateViews)
+testsRouter.post("/tests/update/:id", validateToken, testsController.updateViews)
 
 export default testsRouter;

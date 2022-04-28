@@ -16,18 +16,17 @@ export default function errorHandlingMiddleware(
      }
 	 }
 
-   console.log(error)
   if ("type" in error) {
     if (error.type === "not_found") {
-      return res.sendStatus(404);
+      return res.status(404).send(error.message);
     }
 
     if (error.type === "bad_request") {
-      return res.sendStatus(400);
+      return res.status(400).send(error.message);
     }
 
     if (error.type === "unauthorized") {
-      return res.sendStatus(401);
+      return res.status(401).send(error.message);
     }
   }
 

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { string } from "joi";
 import * as testsRepository from "../repositories/testsRepository.js"
 
 export async function getTests(req: Request, res: Response){
@@ -8,8 +9,10 @@ export async function getTests(req: Request, res: Response){
 }
 
 export async function updateViews(req: Request, res: Response) {
-  const { id } = req.body;
-  
-  await testsRepository.updateViews(id)
-  res.sendStatus(200)
+  const {id} = req.params;
+  const number = Number(id)
+    
+
+  const test = await testsRepository.updateViews(number)
+  res.status(200).send(test);
 }

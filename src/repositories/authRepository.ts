@@ -22,11 +22,11 @@ export async function signUp(user: userData) {
 export async function login(userData: userData) {
 	const {email, password} = userData;
 	const user = await authService.findUserByEmail(email)
-	if(!user) errorUtils.notFound()
+	if(!user) errorUtils.notFound("not found user")
 
 	const hashPassword = user.password;
 	const validatePassword = bcrypt.compareSync(password, hashPassword)
-	if(!validatePassword) errorUtils.unauthorized()
+	if(!validatePassword) errorUtils.unauthorized('Password invalid')
 
 	const secretKey = process.env.JWT_SECRET;
   const token = jwt.sign({userId: user.id}, secretKey);
