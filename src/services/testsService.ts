@@ -21,3 +21,14 @@ export function getTests(){
    }
  })
 }
+
+export function updateViews(id: number){
+  return prisma.tests.update({
+    where: {id: id},
+    data: {
+      views: {
+        increment: 1,
+      }
+    },
+  })
+}

@@ -54,6 +54,7 @@ model tests {
   categoryId           Int
   teachersDiscipline   teachersDisciplines @relation(fields: [teachersDisciplineId], references: [id])
   teachersDisciplineId Int
+  views                Int                 @default(0)
 }
 
 model categories {

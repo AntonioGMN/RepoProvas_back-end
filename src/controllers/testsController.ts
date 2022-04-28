@@ -6,3 +6,10 @@ export async function getTests(req: Request, res: Response){
 
   res.status(200).send(tests)
 }
+
+export async function updateViews(req: Request, res: Response) {
+  const { id } = req.body;
+  
+  await testsRepository.updateViews(id)
+  res.sendStatus(200)
+}

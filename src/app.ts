@@ -12,6 +12,5 @@ app.use(json());
 app.use(router);
 app.use(errorHandlingMiddleware);
 
-app.listen(process.env.PORT, () =>
-	console.log(`Listen on port ${process.env.PORT}`)
-);
+export default app;
+
