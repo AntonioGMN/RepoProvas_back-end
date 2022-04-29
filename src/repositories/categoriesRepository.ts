@@ -1,5 +1,6 @@
-import * as categoriesService from "../services/categoriesService.js"
+import * as categoriesService from "../services/categoriesService.js";
 
-export function getCategories(){
-  return categoriesService.getCategories()
+export function getCategories() {
+	return categoriesService.getCategories();
 }
+

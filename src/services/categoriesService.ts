@@ -26,3 +26,11 @@ export function getCategories() {
 		},
 	});
 }
+
+export async function getByName(name: string){
+	return await prisma.categories.findUnique({
+		where: {
+			name: name
+		}
+	})
+}
