@@ -31,8 +31,8 @@ export async function login(userData: userData) {
 	const secretKey = process.env.JWT_SECRET;
   const token = jwt.sign({userId: user.id}, secretKey);
 
- const coisa = await authService.createSession(user.id, token)
- console.log(coisa)
+  await authService.createSession(user.id, token)
+
 
 	return token;
 }

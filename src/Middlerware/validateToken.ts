@@ -6,7 +6,7 @@ export default async function validateToken(req: Request, res: Response, nest: N
   const authorization = req.headers.authorization;
   const token = authorization?.replace("Bearer ", "");
   const chaveSecreta = process.env.JWT_SECRET;
-
+  console.log(authorization)
 
   try {
 	  const {userId} = jwt.verify(token, chaveSecreta);

@@ -15,7 +15,7 @@ export async function updateViews(id: number) {
 	const testsIds = tests.map((t) => t.id);
 
 	const validateId = testsIds.includes(id);
-	if (!validateId) throw error.notFound("id on update of views was invalid");
+	if (!validateId) throw error.notFound("update of views id was invalid");
 
 	return testsService.updateViews(id);
 }
