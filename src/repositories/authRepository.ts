@@ -2,6 +2,7 @@ import authService, { userData } from "../services/authService.js";
 import * as errorUtils from "../utils/errorUtils.js"
 import jwt from 'jsonwebtoken';
 import bcrypt from "bcrypt";
+import {prisma} from '../database.js'
 
 
 export async function signUp(user: userData) {
@@ -40,4 +41,9 @@ export async function login(userData: userData) {
 export async function logout(token:string) {
   await authService.logout(token)
 	return
+}
+
+export async function truncate() {
+	await prisma.$executeRaw`TRUNCATE TABLE sessions, users`
+	return 
 }
